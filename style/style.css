@@ -241,7 +241,13 @@ a:hover{
     overflow:hidden;
     position:relative;
 }
+
+#mainTop a，#mainTop span{
+    display:inline-block;
+}
 #mainTop img{
+    position:absolute;
+    top:0;
     width:940px;
     height:300px;
     border:none;
@@ -249,7 +255,7 @@ a:hover{
     behavior:url(PIE.htc);
     -webkit-animation:move 3s;
 }
-#mainTop li:last-of-type{
+#li-2{
     width:940px;
     height:52px;
     background:rgb(0,0,0);
@@ -258,17 +264,17 @@ a:hover{
     position:absolute;
     left:0;bottom:0
 }
-#mainTop li:last-of-type span{
+#li-2 span{
     float:left;
     height:52px;
 }
-#mainTop li:last-of-type span:nth-of-type(1){
+#sp1{
     width:260px;
     font:bold 24px/52px 'Arial';
     color:#ffc600;
     text-align:center;
 }
-#mainTop li:last-of-type span:nth-of-type(2){
+#sp2{
     padding-top:5px;
     width:630px;
     font:12px/20px 'Arial';
@@ -493,7 +499,7 @@ a:hover{
 }
 .contentSearch ul{
     position:absolute;
-    top:20px;
+    top:20px; left:0;
     width:90px;
     border:1px solid #ccc;
     border-top:none;

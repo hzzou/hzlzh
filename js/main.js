@@ -5,7 +5,9 @@ window.onload = function (){
   hzlzh.app.sort();
   hzlzh.app.move();
   hzlzh.app.run();
-};
+}
+
+
 
 var hzlzh = {};
 hzlzh.tools = {};
@@ -13,7 +15,24 @@ hzlzh.tools.getStyle = function (obj,attr){
   return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
   //获取没有设置在内部样式中的css样式
 }
+hzlzh.tools.getClassName =function getElementsByClassName(obj,tagName,className){
+  var aEls = obj.getElementsByTagName(tagName);
+  var arr = [];
 
+  for(var i=0;i<aEls.length;i++){
+    /** if(aEls[i].className == className){
+						arr.push(aEls[i]); //不能解决包含多个class名的情况
+					} **/
+    var aClassName = aEls[i].className.split(' '); //以空格为切割点
+    for(var j=0;j<aClassName.length;j++){
+      if(aClassName[j] == className){
+        arr.push(aEls[i]); //依旧装aEls,不过是外层循环中的，是aEls[i],不是aEls[j]
+        break;             //只要找到有一个相同的就跳出内层for循环
+      }
+    }
+  }
+  return arr;
+}
 hzlzh.ui = {};
 hzlzh.ui.select = function (obj,str){
   for(var i=0;i<obj.length;i++){
@@ -90,33 +109,34 @@ hzlzh.app.nav = function (){
   hzlzh.ui.select(aBtn,'active');
 };
 hzlzh.app.aside = function (){
+
   var oSide = document.getElementById('sidebar');
-  var oBar1 = oSide.getElementsByClassName('bar_a')[0];
+  var oBar1 = hzlzh.tools.getClassName(oSide,'section','bar_a')[0];
   var oUl = oBar1.getElementsByTagName('ul')[0];
   var aLi = oUl.getElementsByTagName('li');
   hzlzh.ui.select(aLi,'active_a');
 };
 hzlzh.app.page = function (){
   var oMain = document.getElementById('contentMain');
-  var oPage = oMain.getElementsByClassName('page')[0];
+  var oPage = hzlzh.tools.getClassName(oMain,'div','page')[0];
   var aBtn = oPage.getElementsByTagName('a');
 
   for(var i=0;i<aBtn.length;i++){
     aBtn[i].index = i;
     aBtn[i].onclick = function (){
-      var oActive = oPage.getElementsByClassName('active_p')[0];
+      var oActive = hzlzh.tools.getClassName(oPage,'a','active_p')[0];
       for(var j=0;j<aBtn.length;j++){
           aBtn[j].className = '';
         }
-      if(this.innerHTML == '<span>&lt;&lt;</span> FIRST'){
+      if(this.innerHTML == '<span>&lt;&lt;</span> FIRST' || this.innerHTML == '<SPAN>&lt;&lt;</SPAN> FIRST'){
         aBtn[2].className = 'active_p';
         this.href = aBtn[2].href;
       }
-      else if(this.innerHTML == 'LAST <span>&gt;&gt;</span>'){
+      else if(this.innerHTML == 'LAST <span>&gt;&gt;</span>' ||this.innerHTML == 'LAST <SPAN>&gt;&gt;</SPAN>'){
         aBtn[aBtn.length-3].className = 'active_p';
         this.href = aBtn[aBtn.length-3].href;
       }
-      else if(this.innerHTML == '<span>&lt;</span> PREV'){
+      else if(this.innerHTML == '<span>&lt;</span> PREV' || this.innerHTML == '<SPAN>&lt;</SPAN> PREV'){
         if(oActive.index == 2){
           aBtn[oActive.index].className = 'active_p';
           this.href = aBtn[oActive.index].href;
@@ -127,7 +147,7 @@ hzlzh.app.page = function (){
           this.href = aBtn[oActive.index-1].href;
         }
       }
-      else if(this.innerHTML == 'NEXT <span>&gt;</span>'){
+      else if(this.innerHTML == 'NEXT <span>&gt;</span>' || this.innerHTML == 'NEXT <SPAN>&gt;</SPAN>'){
         if(oActive.index == aBtn.length-3){
           aBtn[oActive.index].className = 'active_p';
           this.href = aBtn[oActive.index].href;
@@ -143,10 +163,10 @@ hzlzh.app.page = function (){
       }
     };
   }
-
 };
 hzlzh.app.sort = function (){
-  var oSearch = document.getElementsByClassName('contentSearch')[0];
+
+  var oSearch = hzlzh.tools.getClassName(document,'dl','contentSearch')[0];
   var aDd = oSearch.getElementsByTagName('dd');
   var aUl = oSearch.getElementsByTagName('ul');
 
@@ -198,10 +218,13 @@ hzlzh.app.move = function (){
     oTop.appendChild(oLi);
 
     oLi = document.createElement('li');
+    oLi.id = 'li-2';
     var oSpan = document.createElement('span');
+    oSpan.id = 'sp1';
     oSpan.innerHTML = arrText1[num];
     oLi.appendChild(oSpan);
     oSpan = document.createElement('span');
+    oSpan.id = 'sp2';
     oSpan.innerHTML = arrText2[num];
     oLi.appendChild(oSpan);
     oTop.appendChild(oLi);
@@ -258,14 +281,16 @@ hzlzh.app.move = function (){
     }
     fn1(iNow);
   };
+
 };
 hzlzh.app.run = function ()  {
   var oBottom = document.getElementById('contentBottom');
-  var oDiv = oBottom.getElementsByClassName('list')[0];
+  var oDiv = hzlzh.tools.getClassName(oBottom,'div','list')[0];
   var oUl = oDiv.getElementsByTagName('ul')[0];
   var aLi = oUl.getElementsByTagName('li');
-  var oBtn1 = oBottom.getElementsByClassName('pre')[0];
-  var oBtn2 = oBottom.getElementsByClassName('next')[0];
+  var oBtn1 = hzlzh.tools.getClassName(oBottom,'a','pre')[0];
+  var oBtn2 = hzlzh.tools.getClassName(oBottom,'a','next')[0];
+
 
 
   oUl.innerHTML += oUl.innerHTML;
@@ -314,3 +339,4 @@ hzlzh.app.run = function ()  {
     fn1();
   };
 };
+
