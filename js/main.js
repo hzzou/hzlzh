@@ -229,9 +229,9 @@ hzlzh.app.move = function (){
     oLi.appendChild(oSpan);
     oTop.appendChild(oLi);
   }
-  fn1(0);
+  //fn1(0);
 
-  var timer = null;
+  /*var timer = null;
   var iNow = 0;
 
   function fn2(){
@@ -280,7 +280,7 @@ hzlzh.app.move = function (){
       iNow++;
     }
     fn1(iNow);
-  };
+  };*/
 
 };
 hzlzh.app.run = function ()  {
