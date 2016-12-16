@@ -230,16 +230,15 @@ a:hover{
     position:relative;
 }
 #mainTop{
+    position:relative;
     width:940px;
     height:300px;
     margin:0 auto;
     border:10px solid #fff;
     border-radius:30px 30px 0 0;
-    behavior:url(PIE.htc);
     border-bottom:none;
     background:#fff;
     overflow:hidden;
-    position:relative;
 }
 
 #mainTop span{
@@ -252,7 +251,6 @@ a:hover{
     height:300px;
     border:none;
     border-radius:20px 20px 0 0;
-    behavior:url(PIE.htc);
     -webkit-animation:move 3s;
 }
 #li-1 a{
@@ -323,7 +321,6 @@ a:hover{
 .bar_a, .bar_b{
     border-radius:10px;
     overflow:hidden;
-    behavior:url(PIE.htc);
 }
 
 .bar_a h2{
@@ -332,7 +329,6 @@ a:hover{
     color:#fff;
     border:none;
     border-radius:10px 10px 0 0;
-    behavior:url(PIE.htc);
     margin-bottom:1px;
     padding-left:34px;
     background:url(../images/bar_a.png) repeat-x;
@@ -344,7 +340,6 @@ a:hover{
     padding:16px 6px 14px;
     background:#ffeeb7;
     border-radius:0 0 10px 10px;
-    behavior:url(PIE.htc);
     margin-bottom:12px;
 }
 .bar_a ul li{
@@ -397,7 +392,6 @@ a:hover{
     margin-left:60px;
     border:none;
     border-radius:5px;
-    behavior:url(PIE.htc);
     color:#fff;
     text-align:center;
     font:bold 14px/26px 'Arial';
@@ -639,7 +633,6 @@ a:hover{
     border:1px solid #c0c0c0;
     border-radius:5px;
     box-shadow:0 0 10px rgb(192,192,192);
-    behavior:url(PIE.htc);
     background:#fff;
     position:absolute;
     top:55px;
